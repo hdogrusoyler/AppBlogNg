@@ -1,0 +1,28 @@
+<div class="container mt-3">
+  <input style="display: none" type="file" (change)="onFileChanged($event)" #fileInput>
+  <button class="btn btn-secondary mr-3" (click)="fileInput.click()">Foto Seç</button>
+  <button class="btn btn-secondary" (click)="onUpload()">Yükle</button>
+</div>
+
+<div class="container mt-3">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Images</th>
+        <th scope="col">isMain</th>
+        <th scope="col">#</th>
+      </tr>
+    </thead>
+    <tbody>
+      
+      <tr *ngFor="let photo of photos">
+        <th scope="row">{{photo.id}}</th>
+        <td><img src="https://localhost:44349/{{photo.path}}" alt="..." class="img-thumbnail"></td>
+        <td><span [class]="photo.isMain ? 'badge badge-dark' : 'badge badge-secondary'">{{photo.isMain ? 'main' : '-'}}</span></td>
+        <td><button type="button" class="btn btn-secondary" (click)="delete(photo.id)">Delete</button></td>
+      </tr>
+  
+    </tbody>
+  </table>
+</div>

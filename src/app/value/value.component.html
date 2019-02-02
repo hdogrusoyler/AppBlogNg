@@ -1,0 +1,16 @@
+<div class="container mt-3">
+  <div class="row">
+
+        <div  *ngFor="let content of contents" style="width: 35rem">
+            <div class="card ml-3 mb-3" >
+                <img src="https://localhost:44349/{{content.photoPath}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">{{content.title}}</h5>
+                  <p class="card-text">{{content.description}}</p>
+                  <p class="card-text"><small class="text-muted" routerLink="/value/{{content.id}}">Detay</small></p>
+                </div>
+            </div>
+        </div>
+
+  </div>
+</div>

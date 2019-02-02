@@ -1,0 +1,39 @@
+<div class="container">
+  <form [formGroup]="contentAddForm" (ngSubmit)="onUpload()">
+        
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input type="text" class="form-control" id="title" placeholder="Title" formControlName="title">
+      <div *ngIf="contentAddForm.get('title').hasError('required') && contentAddForm.get('title').touched" class="alert alert-danger">
+        Title is required.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="categoryId">Categories</label>
+      <select class="form-control" id="categoryId" formControlName="categoryId">
+        <option *ngFor="let category of categories" value="{{category.id}}">{{category.name}}</option>
+      </select>
+      <div *ngIf="contentAddForm.get('categoryId').hasError('required') && contentAddForm.get('categoryId').touched" class="alert alert-danger">
+        Category is required.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea class="form-control" id="description" rows="3" placeholder="Description" formControlName="description"></textarea>
+      <div *ngIf="contentAddForm.get('description').hasError('required') && contentAddForm.get('description').touched" class="alert alert-danger">
+        Description is required.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="image">Choose Photo</label>
+      <input type="file" class="form-control-file" id="image" (change)="onFileChanged($event)" required >
+      
+    </div>          
+
+    <button type="submit" class="btn btn-secondary" [disabled]="contentAddForm.invalid">Submit</button>
+
+</form>
+</div>

@@ -1,0 +1,97 @@
+<div class="container mt-3">
+
+    <form [formGroup]="categoryAddForm" (ngSubmit)="onCreate()">
+
+        <div class="form-group">
+          <label for="name">Category Name</label>
+          <input type="text" class="form-control" id="name" placeholder="category name" formControlName="name">
+          <div *ngIf="categoryAddForm.get('name').hasError('required') && categoryAddForm.get('name').touched" class="alert alert-danger">
+            Category is required.
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-secondary" [disabled]="categoryAddForm.invalid">Submit</button>
+
+    </form>
+
+  <div class="table-responsive mt-3">
+    <table class="table table-bordered table-striped">
+      <thead class="thead-light">
+        <tr>
+          <th scope="col">#</th>
+          <th scope="col">Name</th>
+          <th scope="col">Düzenle</th>
+          <th scope="col">Sil</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr *ngFor="let category of categories">
+          <th scope="row">{{category.id}}</th>
+          <td>{{category.name}}</td>
+          <td>
+              <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModalForm" (click)="getCategory(category)">
+                Düzenle
+              </button>
+          </td>
+          <td>
+              <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModal" (click)="getCategory(category)" [attr.data-whatever]="category.id">
+                  Sil
+              </button>
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Category Delete</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div *ngIf="category" class="modal-body">
+            Are you sure delete category {{category.name}} ?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-dark" data-dismiss="modal" (click)="onDelete(category.id)">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="modal fade" id="exampleModalForm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Save Category</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form>
+              <div class="form-group">
+                <label for="id" class="col-form-label" >Id:</label>
+                <input *ngIf="category" type="text" class="form-control" id="id" name="id" [(ngModel)]="category.id" disabled>
+              </div>
+              <div class="form-group">
+                <label for="name" class="col-form-label" >Name:</label>
+                <input *ngIf="category" type="text" class="form-control" id="name" name="name" [(ngModel)]="category.name">
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="onClose()">Close</button>
+            <button type="button" class="btn btn-dark" data-dismiss="modal" (click)="onUpdate()">Save</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    

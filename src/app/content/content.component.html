@@ -1,0 +1,48 @@
+<div class="container mt-3">
+  <div class="row">
+    <div class="col-3">      
+
+    <div class="input-group mb-3">
+      <input [(ngModel)]="filterText" type="search" class="form-control" placeholder="Ara" aria-label="Ara" aria-describedby="button-addon2">
+      <div class="input-group-append">
+        <button routerLink="/contentFilter/{{filterText}}" class="btn btn-outline-secondary" type="button" id="button-addon2">Ara</button>
+      </div>
+    </div>
+
+    <div class="card">
+        <ul class="list-group list-group-flush">
+          <li *ngFor="let category of categories" routerLink="/contentCategory/{{category.id}}" class="list-group-item" >{{category.name}}</li>
+        </ul>
+    </div>
+
+    <div class="card mt-3">
+      <ul class="list-group list-group-flush">
+        <li routerLink="/contentadd" class="list-group-item" >Content Add</li>
+        <li routerLink="/categoryadd" class="list-group-item" >Category Add</li>
+      </ul>
+    </div>
+
+    <div>
+      <button *ngIf="isAuthenticated" type="button" class="btn btn-secondary mt-3" (click)="logOut()">Çıkış</button>
+    </div>
+    
+    </div>
+
+    <div class="col-9">
+
+      <div class="row">
+        <div *ngFor="let content of contents" style="width: 26rem">
+            <div class="card ml-3 mb-3" >
+                <img src="https://localhost:44349/{{content.photoPath}}" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h5 class="card-title">{{content.title}}</h5>
+                  <p class="card-text">{{content.description}}</p>
+                  <p class="card-text"><small class="text-muted" routerLink="/content/{{content.id}}">Detay</small></p>
+                </div>
+              </div>
+        </div>
+      </div>
+      
+    </div>
+  </div>
+</div>
