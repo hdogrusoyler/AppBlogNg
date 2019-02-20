@@ -1,0 +1,37 @@
+<div class="container mt-3">
+
+  <form [formGroup]="messageAddForm" (ngSubmit)="onCreate()">
+
+      <div class="form-group">
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="name" placeholder="name" formControlName="name">
+        <div *ngIf="messageAddForm.get('name').hasError('required') && messageAddForm.get('name').touched" class="alert alert-danger">
+          Name is required.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="name">EMail</label>
+        <input type="text" class="form-control" id="email" placeholder="email" formControlName="email">
+        <div *ngIf="messageAddForm.get('email').hasError('required') && messageAddForm.get('email').touched" class="alert alert-danger">
+          Email is required.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea rows="4" class="form-control" id="description" placeholder="message" formControlName="description"></textarea>
+        <div *ngIf="messageAddForm.get('description').hasError('required') && messageAddForm.get('description').touched" class="alert alert-danger">
+          Message is required.
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-secondary" [disabled]="categoryAddForm.invalid">Submit</button>
+
+  </form>
+
+</div>
+
+
+
+

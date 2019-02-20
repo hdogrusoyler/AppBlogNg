@@ -9,8 +9,11 @@ import { ContentAddComponent } from './content/content-add/content-add.component
 import { PhotoComponent } from './photo/photo.component';
 import { CategoryComponent } from './category/category.component';
 import { ContentEditComponent } from './content/content-edit/content-edit.component';
+import { MessageComponent } from './message/message.component';
 import { LoginComponent } from './login/login.component';
 import { LoginGuard } from './login/login.guard';
+import { MessageGetComponent } from './message/message-get/message-get.component';
+import { AboutusComponent } from './aboutus/aboutus.component';
 
 const routes: Routes = [
   { path: 'content', component: ContentComponent, canActivate: [LoginGuard]},
@@ -19,6 +22,7 @@ const routes: Routes = [
   { path: 'contentedit/:contentId', component: ContentEditComponent, canActivate: [LoginGuard] },
   { path: 'contentCategory/:contentCategoryId', component: ContentComponent, canActivate: [LoginGuard] },
   { path: 'contentFilter/:contentFilterString', component: ContentComponent, canActivate: [LoginGuard] },
+  { path: 'messageget', component: MessageGetComponent, canActivate: [LoginGuard] },
 
   { path: 'categoryadd', component: CategoryComponent, canActivate: [LoginGuard] },
 
@@ -29,8 +33,8 @@ const routes: Routes = [
   { path: 'category/:categoryId', component: ValueComponent },
   { path: 'filter/:filterString', component: ValueComponent },
 
-  { path: 'hakkimizda', component: ValueComponent },
-  { path: 'iletisim', component: ValueComponent },
+  { path: 'hakkimizda', component: AboutusComponent },
+  { path: 'iletisim', component: MessageComponent },
   { path: '**', redirectTo: 'value', pathMatch: 'full' }
 ];
 

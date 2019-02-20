@@ -6,6 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { NavbarAdminComponent } from './navbar/navbar-admin/navbar-admin.component';
 import { ContentComponent } from './content/content.component';
 import { ContentAddComponent } from './content/content-add/content-add.component';
 import { ContentEditComponent } from './content/content-edit/content-edit.component';
@@ -17,11 +18,15 @@ import { CategoryComponent } from './category/category.component';
 import { LoginComponent } from './login/login.component';
 import { LoginGuard } from './login/login.guard';
 import { LoginInterceptor } from './login/login.interceptor';
+import { MessageComponent } from './message/message.component';
+import { MessageGetComponent } from './message/message-get/message-get.component';
+import { AboutusComponent } from './aboutus/aboutus.component';
 
 @NgModule({
    declarations: [
       AppComponent,
       NavbarComponent,
+      NavbarAdminComponent,
       ValueComponent,
       ValueDetailComponent,
       ContentComponent,
@@ -30,7 +35,10 @@ import { LoginInterceptor } from './login/login.interceptor';
       ContentEditComponent,
       PhotoComponent,
       CategoryComponent,
-      LoginComponent
+      LoginComponent,
+      MessageComponent,
+      MessageGetComponent,
+      AboutusComponent
    ],
    imports: [
       BrowserModule,
@@ -39,7 +47,10 @@ import { LoginInterceptor } from './login/login.interceptor';
       FormsModule,
       ReactiveFormsModule
    ],
-   providers: [LoginGuard, { provide: HTTP_INTERCEPTORS, useClass: LoginInterceptor, multi: true }],
+   providers: [
+      LoginGuard,
+      { provide: HTTP_INTERCEPTORS, useClass: LoginInterceptor, multi: true }
+   ],
    bootstrap: [
       AppComponent
    ]

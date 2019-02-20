@@ -18,6 +18,8 @@ constructor(
 
   path = 'https://localhost:44349/api/values';
 
+  TOKEN_KEY = 'token';
+
   getContents(): Observable<Content[]> {
     return this.httpClient.get<Content[]>(this.path + '/');
   }
@@ -40,5 +42,18 @@ constructor(
 
   getCategories(): Observable<Category[]> {
     return this.httpClient.get<Category[]>(this.path + '/categories');
+  }
+
+  loggedIn() {
+    return this.token != null;
+  }
+
+  get token() {
+    return localStorage.getItem(this.TOKEN_KEY);
+  }
+
+  logOut() {
+    localStorage.removeItem(this.TOKEN_KEY);
+    this.router.navigateByUrl('/value');
   }
 }
